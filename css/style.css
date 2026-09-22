@@ -130,7 +130,7 @@ button { cursor: pointer; font-family: var(--font-sans); border: none; }
 /* ---- HERO — LIGHT BLEED ---- */
 .hero {
   position: relative;
-  height: clamp(480px, 65vw, 650px);
+  height: clamp(360px, 52vw, 520px);
   overflow: hidden;
 }
 .hero-photo {
@@ -140,7 +140,7 @@ button { cursor: pointer; font-family: var(--font-sans); border: none; }
   height: 100%;
   width: 60%;
   object-fit: cover;
-  object-position: 30% 20%;
+  object-position: 20% 20%;
 }
 .hero-photo-placeholder {
   position: absolute;
