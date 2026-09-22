@@ -138,9 +138,9 @@ button { cursor: pointer; font-family: var(--font-sans); border: none; }
   top: 0;
   right: 0;
   height: 100%;
-  width: 40%;
+  width: 55%;
   object-fit: cover;
-  object-position: 15% 20%;
+  object-position: 15% 25%;
 }
 .hero-photo-placeholder {
   position: absolute;
