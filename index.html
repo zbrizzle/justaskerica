@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Erica breaks down the science behind modern wellness — longevity, GLP-1, recovery, cognitive health and more. No hype. Just research.">
+  <title>Just Ask Erica — Science-first wellness</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>E</text></svg>">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Just Ask <em>Erica</em></a>
+      <ul class="nav-links">
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="free-guide.html" class="nav-cta">Free Guide</a></li>
+      </ul>
+      <button class="nav-hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <img class="hero-photo" src="images/erica-hero.jpg" alt="Erica">
+    <div class="hero-fade" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Science-first wellness</p>
+      <h1 class="hero-h1">Everything I wish I knew<br>before I started.</h1>
+      <p class="hero-subh">Just Ask Erica.</p>
+      <p class="hero-body">I spent years reading studies so you don't have to. This free guide is the shortcut I wish someone had given me on day one.</p>
+      <form class="hero-form js-email-form" data-redirect="welcome.html" novalidate>
+        <input class="hero-input" type="email" placeholder="your@email.com" aria-label="Email address" required>
+        <button type="submit" class="hero-btn">Download the free guide</button>
+      </form>
+      <div class="hero-hints" aria-label="Guide covers">
+        <span class="hero-hint">Supplements</span>
+        <span class="hero-hint-sep">·</span>
+        <span class="hero-hint">Sourcing</span>
+        <span class="hero-hint-sep">·</span>
+        <span class="hero-hint">Discounts</span>
+        <span class="hero-hint-sep">·</span>
+        <span class="hero-hint">Research Guides</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar" aria-label="About this site">
+    <div class="trust-bar-inner">
+      <span class="trust-item">PubMed-cited research</span>
+      <span class="trust-item">Not medical advice</span>
+      <span class="trust-item">Independent — no brand partnerships</span>
+      <span class="trust-item">#JustAskErica</span>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar" id="topics" aria-label="Filter by topic">
+    <div class="filter-bar-inner">
+      <span class="filter-label">Browse:</span>
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="glp1">GLP-1 &amp; Weight</button>
+      <button class="filter-pill" data-filter="longevity">Longevity</button>
+      <button class="filter-pill" data-filter="recovery">Recovery</button>
+      <button class="filter-pill" data-filter="cognitive">Cognitive Health</button>
+      <button class="filter-pill" data-filter="nad">NAD+</button>
+      <button class="filter-pill" data-filter="supplements">Supplements</button>
+      <button class="filter-pill" data-filter="sourcing">Sourcing &amp; Safety</button>
+    </div>
+  </div>
+
+  <!-- ARTICLES -->
+  <main class="articles-section" id="articles">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Latest from Erica</p>
+          <h2 class="section-title">Featured Articles</h2>
+        </div>
+        <a href="articles.html" class="see-all-link">See all →</a>
+      </div>
+
+      <div class="article-grid">
+
+        <a href="articles/bpc-157.html" class="article-card" data-category="recovery">
+          <!-- Replace with: <img class="article-thumb" src="images/thumb-bpc157.jpg" alt="BPC-157 research"> -->
+          <div class="article-thumb-placeholder"></div>
+          <div class="article-body">
+            <span class="article-badge badge-recovery">Recovery &amp; Repair</span>
+            <h3 class="article-title">BPC-157: What the Research Actually Shows (And What It Doesn't)</h3>
+            <p class="article-excerpt">I nerded out on every published study. Here's the honest breakdown — animal data, mechanism, what we know, and what's still genuinely unknown.</p>
+            <p class="article-meta">June 18, 2026 · 8 min read</p>
+          </div>
+        </a>
+
+        <a href="articles/semaglutide-guide.html" class="article-card" data-category="glp1">
+          <div class="article-thumb-placeholder"></div>
+          <div class="article-body">
+            <span class="article-badge badge-glp">GLP-1 &amp; Weight</span>
+            <h3 class="article-title">Semaglutide for Weight Loss: The Complete Evidence Guide</h3>
+            <p class="article-excerpt">STEP trial data, compounded vs brand, and the questions your doctor may not volunteer. Everything you need before starting.</p>
+            <p class="article-meta">June 14, 2026 · 11 min read</p>
+          </div>
+        </a>
+
+        <a href="articles/nad-plus.html" class="article-card" data-category="nad">
+          <div class="article-thumb-placeholder"></div>
+          <div class="article-body">
+            <span class="article-badge badge-nad">NAD+ &amp; Longevity</span>
+            <h3 class="article-title">NAD+: The Longevity Molecule Everyone's Talking About. What Does Science Say?</h3>
+            <p class="article-excerpt">Cutting through the supplement industry hype with actual peer-reviewed data. Here's what the studies show.</p>
+            <p class="article-meta">June 10, 2026 · 9 min read</p>
+          </div>
+        </a>
+
+        <a href="articles/semax-selank.html" class="article-card" data-category="cognitive">
+          <div class="article-thumb-placeholder"></div>
+          <div class="article-body">
+            <span class="article-badge badge-cognitive">Cognitive Health</span>
+            <h3 class="article-title">Semax &amp; Selank: A Med Student's Honest Take on the Nootropic Stack</h3>
+            <p class="article-excerpt">What the animal studies say, what's still missing from human data, and why the gap matters.</p>
+            <p class="article-meta">June 6, 2026 · 7 min read</p>
+          </div>
+        </a>
+
+        <a href="articles/source-quality.html" class="article-card" data-category="sourcing">
+          <div class="article-thumb-placeholder"></div>
+          <div class="article-body">
+            <span class="article-badge badge-sourcing">Sourcing &amp; Safety</span>
+            <h3 class="article-title">Why Source Quality Matters More Than Almost Anything Else</h3>
+            <p class="article-excerpt">The contamination risks nobody talks about with DIY reconstitution, and what to look for instead.</p>
+            <p class="article-meta">June 2, 2026 · 6 min read</p>
+          </div>
+        </a>
+
+        <a href="articles/doctor-questions.html" class="article-card" data-category="glp1">
+          <div class="article-thumb-placeholder"></div>
+          <div class="article-body">
+            <span class="article-badge badge-glp">GLP-1 &amp; Weight</span>
+            <h3 class="article-title">5 Questions to Ask Your Doctor Before Starting Semaglutide</h3>
+            <p class="article-excerpt">Questions they might not volunteer. Write these down before your next appointment.</p>
+            <p class="article-meta">May 29, 2026 · 5 min read</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- NEWSLETTER BAND -->
+  <section class="nl-band" aria-label="Newsletter signup">
+    <p class="nl-eyebrow">Free resource</p>
+    <h2 class="nl-title">Get my free <em>longevity research guide.</em></h2>
+    <p class="nl-body">What the studies actually say about modern wellness — the honest version. My most-requested breakdown, free.</p>
+    <form class="nl-form js-email-form" data-redirect="welcome.html" novalidate>
+      <input class="nl-input" type="email" placeholder="your@email.com" aria-label="Email address" required>
+      <button type="submit" class="nl-submit">Get the guide</button>
+    </form>
+    <p class="nl-note">No spam. Just science. Unsubscribe anytime.</p>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip" aria-label="About Erica">
+    <div class="about-strip-inner">
+      <!-- Replace with: <img class="about-avatar" src="images/erica-avatar.jpg" alt="Erica"> -->
+      <div class="about-avatar-placeholder" aria-hidden="true">E</div>
+      <div>
+        <p class="about-quote">"I'm a med student who got genuinely obsessed with the science behind wellness, longevity, and modern medicine. I read the studies so you don't have to — and I'll always tell you what the data says, not what someone wants to sell you."</p>
+        <a href="about.html" class="about-link">Read more about Erica →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <p class="footer-logo">Just Ask Erica</p>
+          <p class="footer-tagline">Science-first wellness content. No hype, no agenda.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#articles">Articles</a>
+          <a href="about.html">About</a>
+          <a href="free-guide.html">Free Guide</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="disclaimer.html">Disclaimer</a>
+        </nav>
+      </div>
+      <p class="footer-disc">This website is for educational and informational purposes only. Nothing on this site constitutes medical advice. Erica is not a licensed physician and does not provide medical treatment, diagnosis, or recommendations. Always consult a qualified healthcare provider before starting any new health program.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
