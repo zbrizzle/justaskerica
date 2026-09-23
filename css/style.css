@@ -135,13 +135,12 @@ button { cursor: pointer; font-family: var(--font-sans); border: none; }
 }
 .hero-photo {
   position: absolute;
-  top: -10%;
+  top: 0;
   right: 0;
-  height: 120%;
+  height: 100%;
   width: auto;
-  max-width: 52%;
-  object-fit: cover;
-  object-position: center 18%;
+  object-fit: contain;
+  object-position: right top;
 }
 .hero-photo-placeholder {
   position: absolute;
