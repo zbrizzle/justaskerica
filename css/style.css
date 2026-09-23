@@ -261,12 +261,13 @@ button { cursor: pointer; font-family: var(--font-sans); border: none; }
 }
 .trust-bar-inner {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   gap: 0;
   max-width: var(--max-w);
   margin: 0 auto;
+  padding: 0 var(--gutter);
 }
 .trust-item {
   font-size: 11px;
