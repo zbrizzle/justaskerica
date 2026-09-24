@@ -1,9 +1,20 @@
 /* Just Ask Erica — Main JS */
 
-// ---- CATEGORY FILTER ----
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+// 1. Replace with your Beehiiv publication ID once you have it
+//    (Settings → Publication → API Keys in Beehiiv)
+const BEEHIIV_PUB_ID = 'YOUR_BEEHIIV_PUB_ID';
+
+// 2. Paste your Google Apps Script Web App URL here after setup (see README)
+const SHEETS_WEBHOOK = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+
+// 3. Path to the PDF relative to site root
+const PDF_PATH = '/guide/just-ask-erica-longevity-guide.pdf';
+// ─────────────────────────────────────────────────────────────────────────────
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Filter pills
+  // ---- CATEGORY FILTER ----
   const pills = document.querySelectorAll('.filter-pill');
   const cards = document.querySelectorAll('.article-card[data-category]');
 
@@ -11,62 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
     pill.addEventListener('click', () => {
       pills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-
       const cat = pill.dataset.filter;
       cards.forEach(card => {
-        if (cat === 'all' || card.dataset.category === cat) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
       });
     });
   });
 
   // ---- EMAIL FORMS ----
-  // Beehiiv embed — replace PUBLICATION_ID with your actual Beehiiv publication ID
-  const BEEHIIV_PUB_ID = 'YOUR_BEEHIIV_PUB_ID';
-
-  function submitToBeehiiv(email, formEl) {
-    const btn = formEl.querySelector('button[type="submit"], button');
-    const originalText = btn.textContent;
-    btn.textContent = 'Submitting...';
-    btn.disabled = true;
-
-    fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, reactivate_existing: true })
-    })
-    .then(r => {
-      if (r.ok) {
-        // Redirect to thank you / download page
-        if (formEl.dataset.redirect) {
-          window.location.href = formEl.dataset.redirect;
-        } else {
-          btn.textContent = '✓ You\'re in!';
-        }
-      } else {
-        btn.textContent = 'Try again';
-        btn.disabled = false;
-      }
-    })
-    .catch(() => {
-      btn.textContent = originalText;
-      btn.disabled = false;
-    });
-  }
-
   document.querySelectorAll('.js-email-form').forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
       const emailInput = form.querySelector('input[type="email"]');
       const email = emailInput.value.trim();
-      if (!email || !email.includes('@')) {
-        emailInput.focus();
-        return;
-      }
-      submitToBeehiiv(email, form);
+      if (!email || !email.includes('@')) { emailInput.focus(); return; }
+
+      const btn = form.querySelector('button[type="submit"], button');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      // 1. Trigger PDF download immediately — no API dependency
+      triggerDownload(PDF_PATH);
+
+      // 2. Send to Google Sheets (fire-and-forget)
+      sendToSheets(email);
+
+      // 3. Send to Beehiiv (fire-and-forget, only if pub ID is set)
+      sendToBeehiiv(email);
+
+      // 4. Redirect to welcome page after a brief moment so the download starts
+      setTimeout(() => {
+        if (form.dataset.redirect) {
+          window.location.href = form.dataset.redirect;
+        } else {
+          btn.textContent = '✓ Check your downloads!';
+        }
+      }, 800);
     });
   });
 
@@ -91,3 +82,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+
+function triggerDownload(path) {
+  const a = document.createElement('a');
+  a.href = path;
+  a.download = 'Just-Ask-Erica-Longevity-Guide.pdf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function sendToBeehiiv(email) {
+  if (!BEEHIIV_PUB_ID || BEEHIIV_PUB_ID === 'YOUR_BEEHIIV_PUB_ID') return;
+  fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, reactivate_existing: true })
+  }).catch(() => {}); // silent — not user-facing
+}
+
+function sendToSheets(email) {
+  if (!SHEETS_WEBHOOK || SHEETS_WEBHOOK === 'YOUR_GOOGLE_APPS_SCRIPT_URL') return;
+  fetch(SHEETS_WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, source: window.location.pathname, ts: new Date().toISOString() })
+  }).catch(() => {}); // silent — not user-facing
+}
