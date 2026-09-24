@@ -107,7 +107,8 @@ function sendToSheets(email) {
   if (!SHEETS_WEBHOOK || SHEETS_WEBHOOK === 'YOUR_GOOGLE_APPS_SCRIPT_URL') return;
   fetch(SHEETS_WEBHOOK, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({ email, source: window.location.pathname, ts: new Date().toISOString() })
   }).catch(() => {}); // silent — not user-facing
 }
