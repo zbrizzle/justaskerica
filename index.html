@@ -34,11 +34,36 @@
         <p class="hero-eyebrow">Science-first wellness</p>
         <h1 class="hero-h1-v2">Longevity is complicated.<br>Erica makes the science <em>easier.</em></h1>
         <p class="hero-body-v2">Evidence-based guides to longevity, peptides, GLP-1s, supplements and modern wellness — without the hype.</p>
-        <form class="hero-form hero-form-v2 js-email-form" data-redirect="welcome.html" novalidate>
-          <input class="hero-input" type="email" placeholder="Enter your email" aria-label="Email address" required>
-          <button type="submit" class="hero-btn hero-btn-v2">Get the Free Guide</button>
-        </form>
-        <p class="hero-note">Practical, research-backed insights. Free guide included.</p>
+              <!-- ASK ERICA question box -->
+        <div class="ask-erica-box">
+          <p class="ask-erica-label">Ask Erica</p>
+
+          <div id="step-question">
+            <textarea id="question-input" class="ask-erica-textarea" placeholder="What do you want to know about longevity, peptides, or wellness?" rows="3"></textarea>
+            <button class="ask-erica-btn" onclick="ericaSubmitQuestion()">Ask Erica →</button>
+          </div>
+
+          <div id="step-email" style="display:none;">
+            <div id="question-preview" class="ask-erica-preview"></div>
+            <p class="ask-erica-unlock-copy"><strong>Erica's answer is ready.</strong> Enter your email to read it — you'll also join the free <em>Dear Erica</em> newsletter.</p>
+            <div class="ask-erica-email-row">
+              <input type="email" id="email-input" class="ask-erica-email" placeholder="your@email.com" />
+              <button class="ask-erica-unlock-btn" onclick="ericaUnlockAnswer()">Unlock →</button>
+            </div>
+            <button class="ask-erica-back" onclick="ericaGoBack()">← Change my question</button>
+          </div>
+
+          <div id="step-answer" style="display:none;">
+            <div class="ask-erica-answer-head">
+              <div class="ask-erica-avatar">E</div>
+              <div><strong>Erica</strong><span>Longevity &amp; Wellness</span></div>
+            </div>
+            <div id="answer-text" class="ask-erica-answer-text"></div>
+            <p class="ask-erica-disclaimer">Not medical advice. Always consult a qualified clinician.</p>
+          </div>
+
+          <p class="ask-erica-secondary" id="secondary-cta">or <a href="free-guide.html">download the free longevity guide</a></p>
+        </div>
       </div>
     </div>
   </section>
