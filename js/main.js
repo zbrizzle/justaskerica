@@ -6,7 +6,7 @@
 const BEEHIIV_PUB_ID = 'YOUR_BEEHIIV_PUB_ID';
 
 // 2. Paste your Google Apps Script Web App URL here after setup (see README)
-const SHEETS_WEBHOOK = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
+const SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyfVh0_OUX_29Az0OS8gZwInjcJMkWzw3kw7hjyFvhanlCDMo-QVL0rZt0xvSfhDtCV6w/exec';
 
 // 3. Path to the PDF relative to site root
 const PDF_PATH = '/guide/just-ask-erica-longevity-guide.pdf';
