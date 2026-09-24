@@ -95,12 +95,11 @@ function triggerDownload(path) {
 }
 
 function sendToBeehiiv(email) {
-  if (!BEEHIIV_PUB_ID || BEEHIIV_PUB_ID === 'YOUR_BEEHIIV_PUB_ID') return;
-  fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, reactivate_existing: true })
-  }).catch(() => {}); // silent — not user-facing
+    fetch('/.netlify/functions/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+    }).catch(() => {}); // silent — not user-facing
 }
 
 function sendToSheets(email) {
