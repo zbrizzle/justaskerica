@@ -3,7 +3,7 @@
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 // 1. Replace with your Beehiiv publication ID once you have it
 //    (Settings → Publication → API Keys in Beehiiv)
-const BEEHIIV_PUB_ID = 'YOUR_BEEHIIV_PUB_ID';
+const BEEHIIV_PUB_ID = 'pub_ac107a13-1e0e-4cc7-bfcd-bf0b57a14379';
 
 // 2. Paste your Google Apps Script Web App URL here after setup (see README)
 const SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyfVh0_OUX_29Az0OS8gZwInjcJMkWzw3kw7hjyFvhanlCDMo-QVL0rZt0xvSfhDtCV6w/exec';
