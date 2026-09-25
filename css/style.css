@@ -1504,5 +1504,4 @@ button { cursor: pointer; font-family: var(--font-sans); border: none; }
 }
 .ask-erica-secondary a { color: #3D8C8C; text-decoration: none; font-weight: 500; }
 .ask-erica-secondary a:hover { text-decoration: underline; }
-.hero-v2 { height: auto !important; min-height: 580px; }
-.hero-v2-inner { overflow: visible !important; align-items: flex-start; }
+
