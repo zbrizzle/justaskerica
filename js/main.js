@@ -112,6 +112,9 @@ function sendToSheets(email) {
   }).catch(() => {}); // silent — not user-facing
 }
 // ===== ASK ERICA QUESTION BOX =====
+let ericaEmail = '';
+let ericaHistory = [];
+
 function ericaSubmitQuestion() {
   const q = document.getElementById('question-input').value.trim();
   if (!q) { document.getElementById('question-input').focus(); return; }
@@ -124,18 +127,30 @@ function ericaSubmitQuestion() {
 function ericaUnlockAnswer() {
   const email = document.getElementById('email-input').value.trim();
   if (!email || !email.includes('@')) { document.getElementById('email-input').focus(); return; }
-
-  // Submit email to Beehiiv + Sheets
+  ericaEmail = email;
   sendToBeehiiv(email);
   sendToSheets(email);
-
-  // Show a sample answer (replace with real AI call later)
-  document.getElementById('answer-text').innerHTML =
-    '<p>Great question. Based on the current research, this is an area where we have some solid animal data but limited human trials. The evidence suggests meaningful benefits in the right context — but as always, the quality of source and individual factors matter a lot.</p>' +
-    '<p>For a personalized take, a consult with a longevity-focused clinician is always the best next step.</p>';
-
+  const question = document.getElementById('question-input').value.trim();
+  ericaHistory = [];
+  ericaShowAnswer(question);
   document.getElementById('step-email').style.display = 'none';
   document.getElementById('step-answer').style.display = 'flex';
+}
+
+function ericaFollowUp() {
+  const q = document.getElementById('followup-input').value.trim();
+  if (!q) { document.getElementById('followup-input').focus(); return; }
+  ericaShowAnswer(q);
+  document.getElementById('followup-input').value = '';
+}
+
+function ericaReset() {
+  document.getElementById('question-input').value = '';
+  document.getElementById('followup-input').value = '';
+  ericaHistory = [];
+  document.getElementById('step-answer').style.display = 'none';
+  document.getElementById('step-question').style.display = 'flex';
+  document.getElementById('secondary-cta').style.display = 'block';
 }
 
 function ericaGoBack() {
@@ -144,12 +159,40 @@ function ericaGoBack() {
   document.getElementById('secondary-cta').style.display = 'block';
 }
 
-// Allow Enter to submit question (Shift+Enter for newline)
+async function ericaShowAnswer(question) {
+  const answerEl = document.getElementById('answer-text');
+  answerEl.innerHTML = '<p style="color:#7A9898;font-style:italic;">Erica is thinking…</p>';
+
+  try {
+    const res = await fetch('/.netlify/functions/ask-erica', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, history: ericaHistory })
+    });
+    const data = await res.json();
+    if (data.answer) {
+      answerEl.innerHTML = data.answer.split('\n\n').map(p => `<p>${p}</p>`).join('');
+      ericaHistory.push({ role: 'user', content: question });
+      ericaHistory.push(data.assistantMessage);
+    } else {
+      throw new Error('No answer');
+    }
+  } catch (e) {
+    answerEl.innerHTML = '<p>Something went wrong — please try again in a moment.</p>';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const qi = document.getElementById('question-input');
   if (qi) {
     qi.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ericaSubmitQuestion(); }
+    });
+  }
+  const fi = document.getElementById('followup-input');
+  if (fi) {
+    fi.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ericaFollowUp(); }
     });
   }
 });
